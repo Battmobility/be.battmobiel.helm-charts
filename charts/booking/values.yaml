@@ -1,0 +1,66 @@
+# Default values for booking.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+fullnameOverride: booking
+replicaCount: 1
+
+image:
+  repository: "battregistry.azurecr.io/be.battmobiel.booking"
+  tag: "latest" # this is unused in the CI Pipeline, see README.md
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+env:
+  QUARKUS_HTTP_PORT: 8080
+  GOOGLE_APPLICATION_CREDENTIALS: /credentials/firebase-credentials.json
+  PRICE_CLIENT_MP_REST_URL: http://booking
+  FIREBASE_ACTIVE: true
+secrets:
+  QUARKUS_DATASOURCE_BOOKING_USERNAME:
+    secretName: "booking-database-credentials"
+    secretKey: "username"
+  QUARKUS_DATASOURCE_BOOKING_PASSWORD:
+    secretName: "booking-database-credentials"
+    secretKey: "password"
+  QUARKUS_DATASOURCE_USERNAME:
+    secretName: "booking-database-credentials"
+    secretKey: "username"
+  QUARKUS_DATASOURCE_PASSWORD:
+    secretName: "booking-database-credentials"
+    secretKey: "password"
+  INTERNAL_TOPIC_AMQP_URL:
+    secretName: "telematics-servicebus-credentials"
+    secretKey: "connectionString"
+  GOOGLE_API_KEY:
+    secretName: "geocode-google-credentials"
+    secretKey: "apikey"
+liveness:
+  path: /health/live
+  initialDelaySeconds: 120
+  periodSeconds: 60
+  timeoutSeconds: 10
+readiness:
+  path: /health/ready
+  initialDelaySeconds: 5
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 150Mi
+volumeMounts:
+  - name: credentials
+    mountPath: "/credentials"
+    readOnly: true
+volumes:
+  - name: credentials
+    projected:
+      sources:
+        - secret:
+            name: firebase-credentials

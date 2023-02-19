@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "be.battmobiel.bff.fullname" . }}-images
+  labels:
+    {{- include "be.battmobiel.bff.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.global.host }}
+      secretName: tls-secret
+  rules:
+    - host: {{ .Values.global.host }}
+      http:
+        paths:
+        {{- $fullName := include "be.battmobiel.bff.fullname" . -}}
+        {{- $port := .Values.service.port }}
+        {{- range .Values.ingress.paths }}
+          - backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ $port }}
+            path: {{ . }}
+        {{- end }}
