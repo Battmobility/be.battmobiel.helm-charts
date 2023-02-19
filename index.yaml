@@ -2,23 +2,67 @@ apiVersion: v1
 entries:
   booking:
   - apiVersion: v2
-    created: "2023-02-19T08:56:36.426655431Z"
+    created: "2023-02-19T09:01:26.798311848Z"
     description: Booking service for Battmobiel.
-    digest: 23a956af620b945dabf3abf8d5a5467afae3ded0a2209d5365bfc1eb259a165b
+    digest: 8d9003a667d73aadeee656e23e765baa1865be5cc2e54098de88248f1c8ca768
     name: booking
     type: application
     urls:
     - https://Battmobility.github.io/be.battmobiel.helm-charts/booking-0.1.0.tgz
     version: 0.1.0
+  chat:
+  - apiVersion: v2
+    created: "2023-02-19T09:01:26.798935145Z"
+    description: Chat service for Battmobiel. Allows updating conversations, adding
+      topics,...
+    digest: 9fb1d2c49bac04de22e59a989aef39911b257c75d2ce5f30db17d3798191f477
+    name: chat
+    type: application
+    urls:
+    - https://Battmobility.github.io/be.battmobiel.helm-charts/chat-0.1.0.tgz
+    version: 0.1.0
   mobile-bff:
   - apiVersion: v2
-    created: "2023-02-19T08:56:36.427433946Z"
+    created: "2023-02-19T09:01:26.799841641Z"
     description: Backend-for-frontend to be used as an interface between a client
       and a microservice architecture.
-    digest: 8075f9f0754d378a15d7a974932356090814bd88aabe8e1c887ceca190fb5baf
+    digest: e62c160b5c5d32bbafe04faf13181ee9ff02223fcea56dc31e48e6b18f75e39b
     name: mobile-bff
     type: application
     urls:
     - https://Battmobility.github.io/be.battmobiel.helm-charts/mobile-bff-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-19T08:56:36.425460208Z"
+  telematics:
+  - apiVersion: v2
+    created: "2023-02-19T09:01:26.800358238Z"
+    description: telematics service for Battmobiel. Allows updating conversations,
+      adding topics,...
+    digest: d4e1402891f6be5e2aa555571da06776134985ffde6b94500bcc9f0634fa3ca6
+    name: telematics
+    type: application
+    urls:
+    - https://Battmobility.github.io/be.battmobiel.helm-charts/telematics-0.1.0.tgz
+    version: 0.1.0
+  translation:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-02-19T09:01:26.800764836Z"
+    description: A Helm chart for Translations Service
+    digest: 03a35578f9004e6a5a0dd03fe17dbbf72bfe003ca05754dc641dee44f590f19d
+    name: translation
+    type: application
+    urls:
+    - https://Battmobility.github.io/be.battmobiel.helm-charts/translation-0.1.0.tgz
+    version: 0.1.0
+  web-bff:
+  - apiVersion: v2
+    created: "2023-02-19T09:01:26.801192734Z"
+    description: Backend-for-frontend to be used as an interface between a client
+      and a microservice architecture.
+    digest: 5719490b71da450ac3f857b05709e910cd85d55f5a1e4f47f7c22a7601d0f159
+    name: web-bff
+    type: application
+    urls:
+    - https://Battmobility.github.io/be.battmobiel.helm-charts/web-bff-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-02-19T09:01:26.797004854Z"
