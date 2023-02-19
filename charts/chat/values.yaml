@@ -1,0 +1,45 @@
+# Default values for chat.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+fullnameOverride: chat
+replicaCount: 1
+
+image:
+  repository: "battregistry.azurecr.io/be.battmobiel.chat"
+  tag: "latest" # this is unused in the CI Pipeline, see README.md
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+env:
+  QUARKUS_HTTP_PORT: "8080"
+  USER_CLIENT_MP_REST_URL: "http://booking"
+secrets:
+  QUARKUS_DATASOURCE_CHAT_USERNAME:
+    secretName: "chat-database-credentials"
+    secretKey: "username"
+  QUARKUS_DATASOURCE_CHAT_PASSWORD:
+    secretName: "chat-database-credentials"
+    secretKey: "password"
+  INTERNAL_TOPIC_AMQP_URL:
+    secretName: "telematics-servicebus-credentials"
+    secretKey: "connectionString"
+liveness:
+  path: /health/live
+  initialDelaySeconds: 120
+  periodSeconds: 60
+  timeoutSeconds: 10
+readiness:
+  path: /health/ready
+  initialDelaySeconds: 5
+resources:
+  requests:
+    cpu: 20m
+    memory: 50Mi
+  limits:
+    cpu: 80m
+    memory: 150Mi

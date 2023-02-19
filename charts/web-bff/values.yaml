@@ -1,0 +1,60 @@
+# Default values for be.battmobiel.bff.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+fullnameOverride: web-bff
+replicaCount: 1
+
+image:
+  repository: "battregistry.azurecr.io/be.battmobiel.web-bff"
+  tag: "latest" # this is unused in the CI Pipeline, see README.md
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  host: dev-app.battmobility.com
+  tlsSecret: tls-secret-web-bff
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+  paths:
+  - /api/web-bff-service/v1(/|$)(booking/v1/vehicle/image.*)
+  - /api/web-bff-service/v1(/|$)(user/v1/image.*)
+  - /api/web-bff-service/v1(/|$)(incident/v1/vehicle/damage/image.*)
+  - /api/web-bff-service/v1(/|$)(chat/v1/conversations/.*/attachments/.*)
+
+env:
+  CHAT_CLIENT_MP_REST_URL: http://chat
+  BOOKING_CLIENT_MP_REST_URL: http://booking
+  TELEMATICS_CLIENT_MP_REST_URL: http://telematics
+  TRANSLATION_CLIENT_MP_REST_URL: http://translation
+  CMS_CLIENT_MP_REST_URL: http://miles-cms-v1
+  QUARKUS_HTTP_PORT: 8080
+secrets:
+  KEYCLOAK_ADMIN_PASSWORD:
+    secretName: keycloak-credentials
+    secretKey: password
+  GOOGLE_API_KEY:
+    secretName: geocode-google-credentials
+    secretKey: apikey
+liveness:
+  path: /health/live
+  initialDelaySeconds: 120
+  periodSeconds: 60
+  timeoutSeconds: 10
+readiness:
+  path: /health/ready
+  initialDelaySeconds: 5
+resources:
+  requests:
+    cpu: 20m
+    memory: 50Mi
+  limits:
+    cpu: 80m
+    memory: 150Mi

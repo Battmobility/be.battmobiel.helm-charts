@@ -1,0 +1,53 @@
+# Default values for translation.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+fullnameOverride: translation
+replicaCount: 1
+
+image:
+  repository: "battregistry.azurecr.io/be.battmobiel.translation"
+  tag: "latest" # this is unused in the CI Pipeline, see README.md
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+env:
+  QUARKUS_HTTP_PORT: 8080
+secrets:
+  QUARKUS_DATASOURCE_USERNAME:
+    secretName: "translations-database-credentials"
+    secretKey: "username"
+  QUARKUS_DATASOURCE_PASSWORD:
+    secretName: "translations-database-credentials"
+    secretKey: "password"
+  QUARKUS_DATASOURCE_TRANSLATION_USERNAME:
+    secretName: "translations-database-credentials"
+    secretKey: "username"
+  QUARKUS_DATASOURCE_TRANSLATION_PASSWORD:
+    secretName: "translations-database-credentials"
+    secretKey: "password"
+  FABRIC_DATASOURCE_USERNAME:
+    secretName: "translations-database-credentials"
+    secretKey: "username"
+  FABRIC_DATASOURCE_PASSWORD:
+    secretName: "translations-database-credentials"
+    secretKey: "password"
+liveness:
+  path: /health/live
+  initialDelaySeconds: 120
+  periodSeconds: 60
+  timeoutSeconds: 10
+readiness:
+  path: /health/ready
+  initialDelaySeconds: 5
+resources:
+  requests:
+    cpu: 20m
+    memory: 50Mi
+  limits:
+    cpu: 80m
+    memory: 150Mi

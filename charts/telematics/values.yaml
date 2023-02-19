@@ -1,0 +1,70 @@
+# Default values for telematics.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+fullnameOverride: telematics
+replicaCount: 1
+
+image:
+  repository: "battregistry.azurecr.io/be.battmobiel.telematics"
+  tag: "latest" # this is unused in the CI Pipeline, see README.md
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+env:
+  QUARKUS_HTTP_PORT: "8080"
+  TESLA_API_MP_REST_URL: "https://tesla-mock-api.kwintendebacker.now.sh"
+  CONTINENTAL_SOCKET_ENABLED: "true"
+secrets:
+  QUARKUS_DATASOURCE_TELEMATICS_USERNAME:
+    secretName: "telematics-database-credentials"
+    secretKey: "username"
+  QUARKUS_DATASOURCE_TELEMATICS_PASSWORD:
+    secretName: "telematics-database-credentials"
+    secretKey: "password"
+  INVERS_API_AUTH_HEADER_NAME:
+    secretName: "telematics-apikey"
+    secretKey: "name"
+  INVERS_API_AUTH_HEADER_VALUE:
+    secretName: "telematics-apikey"
+    secretKey: "value"
+  INVERS_QUEUE_PASSWORD:
+    secretName: "telematics-queue-credentials"
+    secretKey: "password"
+  INVERS_QUEUE_VIRTUAL_HOST:
+    secretName: "telematics-queue-credentials"
+    secretKey: "virtualHost"
+  INTERNAL_TOPIC_AMQP_URL:
+    secretName: "telematics-servicebus-credentials"
+    secretKey: "connectionString"
+  TESLA_API_CLIENT_SECRET:
+    secretName: "tesla-credentials"
+    secretKey: "clientSecret"
+  TESLA_API_PASSWORD:
+    secretName: "tesla-credentials"
+    secretKey: "password"
+  CONTINENTAL_API_KEY:
+    secretName: "continental-credentials"
+    secretKey: "apiKey"
+  CONTINENTAL_SECRET_KEY:
+    secretName: "continental-credentials"
+    secretKey: "secretKey"
+liveness:
+  path: /health/live
+  initialDelaySeconds: 120
+  periodSeconds: 60
+  timeoutSeconds: 10
+readiness:
+  path: /health/ready
+  initialDelaySeconds: 5
+resources:
+  requests:
+    cpu: 20m
+    memory: 50Mi
+  limits:
+    cpu: 80m
+    memory: 150Mi
