@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   booking:
   - apiVersion: v2
+    created: "2023-02-19T10:49:46.201860019Z"
+    description: Booking service for Battmobiel.
+    digest: 717f9ac26f47163616e409642c0bad027e22f207983790f5978db563777af1ce
+    name: booking
+    type: application
+    urls:
+    - https://Battmobility.github.io/be.battmobiel.helm-charts/booking-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     created: "2023-02-19T09:01:26.798311848Z"
     description: Booking service for Battmobiel.
     digest: 8d9003a667d73aadeee656e23e765baa1865be5cc2e54098de88248f1c8ca768
@@ -11,6 +20,16 @@ entries:
     - https://Battmobility.github.io/be.battmobiel.helm-charts/booking-0.1.0.tgz
     version: 0.1.0
   chat:
+  - apiVersion: v2
+    created: "2023-02-19T10:49:46.202349317Z"
+    description: Chat service for Battmobiel. Allows updating conversations, adding
+      topics,...
+    digest: dd2a74df608983ffad1eaae19423ba5542fa37c5e9c9057ac661926caafcb078
+    name: chat
+    type: application
+    urls:
+    - https://Battmobility.github.io/be.battmobiel.helm-charts/chat-0.2.0.tgz
+    version: 0.2.0
   - apiVersion: v2
     created: "2023-02-19T09:01:26.798935145Z"
     description: Chat service for Battmobiel. Allows updating conversations, adding
@@ -23,6 +42,16 @@ entries:
     version: 0.1.0
   mobile-bff:
   - apiVersion: v2
+    created: "2023-02-19T10:49:46.202918814Z"
+    description: Backend-for-frontend to be used as an interface between a client
+      and a microservice architecture.
+    digest: ab0438d67eb06ec94e6a06aa5ad3ae2c8c368ffe53bca1ebf74e4b2cd56361f1
+    name: mobile-bff
+    type: application
+    urls:
+    - https://Battmobility.github.io/be.battmobiel.helm-charts/mobile-bff-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     created: "2023-02-19T09:01:26.799841641Z"
     description: Backend-for-frontend to be used as an interface between a client
       and a microservice architecture.
@@ -33,6 +62,16 @@ entries:
     - https://Battmobility.github.io/be.battmobiel.helm-charts/mobile-bff-0.1.0.tgz
     version: 0.1.0
   telematics:
+  - apiVersion: v2
+    created: "2023-02-19T10:49:46.203572111Z"
+    description: telematics service for Battmobiel. Allows updating conversations,
+      adding topics,...
+    digest: b3247440d845beeda713584064b127191309498ec591f15927e9b500eb9511bb
+    name: telematics
+    type: application
+    urls:
+    - https://Battmobility.github.io/be.battmobiel.helm-charts/telematics-0.2.0.tgz
+    version: 0.2.0
   - apiVersion: v2
     created: "2023-02-19T09:01:26.800358238Z"
     description: telematics service for Battmobiel. Allows updating conversations,
@@ -46,6 +85,16 @@ entries:
   translation:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-02-19T10:49:46.203954709Z"
+    description: A Helm chart for Translations Service
+    digest: e0ef157c50b3bd8fc000ef4a746772b63cd8d1171b76f8b142d4cca56ddb8e92
+    name: translation
+    type: application
+    urls:
+    - https://Battmobility.github.io/be.battmobiel.helm-charts/translation-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-02-19T09:01:26.800764836Z"
     description: A Helm chart for Translations Service
     digest: 03a35578f9004e6a5a0dd03fe17dbbf72bfe003ca05754dc641dee44f590f19d
@@ -56,6 +105,16 @@ entries:
     version: 0.1.0
   web-bff:
   - apiVersion: v2
+    created: "2023-02-19T10:49:46.204370707Z"
+    description: Backend-for-frontend to be used as an interface between a client
+      and a microservice architecture.
+    digest: 80d62aedee5657e663547f3d1b9bb56d7a4d91ff107e67a7fbecc39b1f0c3ae9
+    name: web-bff
+    type: application
+    urls:
+    - https://Battmobility.github.io/be.battmobiel.helm-charts/web-bff-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     created: "2023-02-19T09:01:26.801192734Z"
     description: Backend-for-frontend to be used as an interface between a client
       and a microservice architecture.
@@ -65,4 +124,4 @@ entries:
     urls:
     - https://Battmobility.github.io/be.battmobiel.helm-charts/web-bff-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-19T09:01:26.797004854Z"
+generated: "2023-02-19T10:49:46.200994624Z"
