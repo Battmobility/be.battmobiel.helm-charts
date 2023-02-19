@@ -5,6 +5,8 @@
 fullnameOverride: booking
 replicaCount: 1
 
+imagePullSecrets:
+  - name: ghcr-battregistry-credentials
 image:
   repository: "battregistry.azurecr.io/be.battmobiel.booking"
   tag: "latest" # this is unused in the CI Pipeline, see README.md

@@ -5,6 +5,8 @@
 fullnameOverride: translation
 replicaCount: 1
 
+imagePullSecrets:
+  - name: ghcr-battregistry-credentials
 image:
   repository: "battregistry.azurecr.io/be.battmobiel.translation"
   tag: "latest" # this is unused in the CI Pipeline, see README.md
